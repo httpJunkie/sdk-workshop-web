@@ -1,6 +1,6 @@
 import './App.global.css'
 import styles from './App.module.css'
-// import { MetaMaskUIProvider } from '@metamask/sdk-react-ui'
+import { MetaMaskUIProvider } from '@metamask/sdk-react-ui'
 
 import { Navigation } from './components/Navigation'
 import { Display } from './components/Display'
@@ -22,13 +22,13 @@ export const App = () => {
     <div className={styles.appContainer}>
 
       <AppContextProvider>
-        {/* <MetaMaskUIProvider sdkOptions={sdkOptions}> */}
+        <MetaMaskUIProvider sdkOptions={sdkOptions}>
           <div className={styles.appContainer}>
             <Navigation />
             <Display />
             <MetaMaskError />
           </div>
-        {/* </MetaMaskUIProvider> */}
+        </MetaMaskUIProvider>
       </AppContextProvider>
     </div>
   )
