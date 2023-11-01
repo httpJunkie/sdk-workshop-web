@@ -10,7 +10,6 @@ import { AppContextProvider } from './hooks/useAppContext'
 // import Onboard from '@web3-onboard/core'
 import metamaskSDK from '@web3-onboard/metamask'
 import { Web3OnboardProvider, init } from '@web3-onboard/react'
-import injectedModule from '@web3-onboard/injected-wallets'
 const INFURA_KEY = import.meta.env.VITE_PUBLIC_INFURA_PROJECT_ID
 const ethereumLinea = {
   id: '0xe704',
@@ -35,7 +34,6 @@ const metamaskSDKWallet = metamaskSDK({ options: mmSdkOptions })
 /* ADDED FOR @web3-onboard/metamask */
 
 const chains = [ethereumLinea]
-const wallets = [injectedModule()]
 const web3Onboard = init({
   wallets: [metamaskSDKWallet], /* UPDATED FOR @web3-onboard/metamask */
   chains,
