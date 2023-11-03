@@ -7,22 +7,50 @@ import { Display } from './components/Display'
 import { MetaMaskError } from './components/MetaMaskError'
 import { AppContextProvider } from './hooks/useAppContext'
 
-export const App = () => {
+import { WagmiConfig, createConfig, configureChains } from 'wagmi'
+import { lineaTestnet } from '@wagmi/core/chains'
+import { jsonRpcProvider } from 'wagmi/providers/jsonRpc'
+import { InjectedConnector } from 'wagmi/connectors/injected'
 
+const { chains, publicClient } = configureChains(
+  [lineaTestnet],
+  [
+    jsonRpcProvider({
+      rpc: () => ({
+        http: `https://linea-goerli.infura.io/v3/305727869d444a8f8e17345b4d8b32e7`,
+      }),
+    })]
+  ,
+)
+
+const config = createConfig({
+  autoConnect: true,
+  publicClient,
+  connectors: [
+    new InjectedConnector({
+      chains,
+      options: {
+        name: 'injected',
+        shimDisconnect: true,
+      },
+    }),
+  ],
+})
+
+export const App = () => {
   const sdkOptions = {
     logging: { developerMode: false },
     checkInstallationImmediately: false, // This will automatically connect to MetaMask on page load
     dappMetadata: {
-      name: 'ETH Atlantis Dapp',
+      name: 'Demo React App',
       url: window.location.host,
     },
   }
 
   return (
-    <div className={styles.appContainer}>
-
+    <WagmiConfig config={config}>
       <AppContextProvider>
-        <MetaMaskUIProvider sdkOptions={sdkOptions}>
+        <MetaMaskUIProvider sdkOptions={sdkOptions} networks={chains}>
           <div className={styles.appContainer}>
             <Navigation />
             <Display />
@@ -30,6 +58,6 @@ export const App = () => {
           </div>
         </MetaMaskUIProvider>
       </AppContextProvider>
-    </div>
+    </WagmiConfig>
   )
 }

@@ -76,7 +76,7 @@ const TicketTypes: React.FC<Ticket> = ({
       <div className={styles.ticketType}>
         <h2>{description}</h2>
         <p>{price} ETH</p>
-        <button disabled={disableMint} onClick={mintTicket}>
+        <button className="dapp" disabled={disableMint} onClick={mintTicket}>
           <SiEthereum /> {isMinting ? 'Minting...' : 'Mint'} Ticket
         </button>
       </div>

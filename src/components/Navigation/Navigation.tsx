@@ -1,10 +1,9 @@
 import { SiEthereum } from 'react-icons/si'
 
 import styles from './Navigation.module.css'
+import { MetaMaskButton } from '@metamask/sdk-react-ui'
 
 export const Navigation = () => {
-
-  const networkId = import.meta.env.VITE_PUBLIC_NETWORK_ID
 
   return (
     <div className={styles.navigation}>
@@ -13,7 +12,7 @@ export const Navigation = () => {
           <div><SiEthereum /> ETH Atlantis</div>
         </div>
         <div className={styles.rightNav}>
-          <button>MM BUTTON</button>
+          <MetaMaskButton theme={'light'} color="white"></MetaMaskButton>
         </div>
       </div>
     </div>
