@@ -16,7 +16,7 @@ const { chains } = configureChains(
   [
     jsonRpcProvider({
       rpc: () => ({
-        http: `https://linea-goerli.infura.io/v3/305727869d444a8f8e17345b4d8b32e7`,
+        http: `https://linea-goerli.infura.io/v3/${import.meta.env.VITE_PUBLIC_INFURA_API_KEY}`,
       }),
     }),
   ],
