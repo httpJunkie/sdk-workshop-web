@@ -7,7 +7,6 @@ import { MetaMaskError } from './components/MetaMaskError'
 import { AppContextProvider } from './hooks/useAppContext'
 
 // Web3 Onboard Imports
-// import Onboard from '@web3-onboard/core'
 import metamaskSDK from '@web3-onboard/metamask'
 import { Web3OnboardProvider, init } from '@web3-onboard/react'
 const INFURA_KEY = import.meta.env.VITE_PUBLIC_INFURA_PROJECT_ID
@@ -15,7 +14,7 @@ const ethereumLinea = {
   id: '0xe704',
   token: 'ETH',
   label: 'Linea Testnet',
-  rpcUrl: `https://linea-goerli.infura.io/v3/${INFURA_KEY}`
+  rpcUrl: `https://linea-goerli.infura.io/v3/${INFURA_KEY}`,
 }
 
 /* ADDED FOR @web3-onboard/metamask */
@@ -28,10 +27,6 @@ const mmSdkOptions = {
   },
 }
 const metamaskSDKWallet = metamaskSDK({ options: mmSdkOptions })
-// const onboard = Onboard({
-//   wallets: [metamaskSDKWallet]
-// })
-/* ADDED FOR @web3-onboard/metamask */
 
 const chains = [ethereumLinea]
 const web3Onboard = init({
@@ -40,8 +35,8 @@ const web3Onboard = init({
   appMetadata: {
     name: 'ETH Atlantis',
     icon: '<svg>App Icon</svg>',
-    description: 'A demo of Web3-Onboard for the ETH Atlantis (MM SDK + Linea Workshop).'
-  }
+    description: 'A demo of Web3-Onboard for the ETH Atlantis (MM SDK + Linea Workshop).',
+  },
 })
 
 export const App = () => {
